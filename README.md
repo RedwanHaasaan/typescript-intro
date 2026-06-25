@@ -263,6 +263,176 @@ type Status = "active" | "inactive" | "pending";
 * Use **Interface** for object-oriented designs and contracts.
 * Use **Type Alias** for unions, intersections, and advanced type compositions.
 
+---
+# Task-002
+
+**📅 Date:** 24/06/2026
+
+---
+
+# 11. When do you use a return type of `never` and how does it differ from `void`?
+
+## Answer
+
+Both `void` and `never` are function return types, but they have different meanings.
+
+* **`void`** → The function completes normally but returns no meaningful value (`undefined`).
+* **`never`** → The function never finishes execution because it always throws an error or runs forever.
+
+```ts
+// void
+function printMessage(msg: string): void {
+  console.log(msg);
+}
+
+// never
+function throwError(msg: string): never {
+  throw new Error(msg);
+}
+
+function infiniteLoop(): never {
+  while (true) {}
+}
+```
+
+| `void`                | `never`                           |
+| --------------------- | --------------------------------- |
+| Function finishes     | Function never finishes           |
+| Returns `undefined`   | Never returns                     |
+| Used for side effects | Used for errors or infinite loops |
+
+**Key Difference:** `void` means the function finishes without returning a useful value, while `never` means the function never returns.
+
+---
+
+# 12. What access modifiers are supported by TypeScript?
+
+## Answer
+
+TypeScript supports **three access modifiers** for controlling member visibility:
+
+* **`public`** (default) → Accessible from anywhere.
+* **`private`** → Accessible only inside the same class.
+* **`protected`** → Accessible inside the class and its subclasses.
+
+```ts
+class User {
+  public name = "John";
+  private password = "123456";
+  protected age = 25;
+}
+```
+
+| Modifier    | Same Class | Child Class | Outside Class |
+| ----------- | ---------- | ----------- | ------------- |
+| `public`    | ✅          | ✅           | ✅             |
+| `protected` | ✅          | ✅           | ❌             |
+| `private`   | ✅          | ❌           | ❌             |
+
+Access modifiers improve encapsulation by hiding implementation details and preventing unintended access.
+
+---
+
+# 13. What is the difference between Union and Intersection types?
+
+## Answer
+
+Both combine existing types but work differently.
+
+* **Union (`|`)** → A value can be **one of multiple types**.
+* **Intersection (`&`)** → A value must satisfy **all combined types**.
+
+```ts
+interface Student {
+  name: string;
+  email: string;
+}
+
+interface Employee {
+  name: string;
+  salary: number;
+}
+
+type Person = Student | Employee;        // Either Student or Employee
+type WorkingPerson = Student & Employee; // Both Student and Employee
+```
+
+| Union (`|`) | Intersection (`&`) |
+|-------------|--------------------|
+| Either A or B | Both A and B |
+| One type required | All types required |
+
+**Key Difference:** Union allows multiple possible types, while Intersection merges multiple types into one.
+
+---
+
+# 14. What is the difference between `extends` and `implements` in TypeScript?
+
+## Answer
+
+Both are used for inheritance but have different purposes.
+
+* **`extends`** → A class inherits properties and methods from another class.
+* **`implements`** → A class must follow the structure (contract) of an interface or class.
+
+```ts
+class User {
+  name!: string;
+}
+
+class Admin extends User {}
+
+interface Person {
+  name: string;
+}
+
+class Student implements Person {
+  name = "John";
+}
+```
+
+| `extends`               | `implements`                 |
+| ----------------------- | ---------------------------- |
+| Inherits implementation | Follows a contract           |
+| Reuses code             | Must define required members |
+
+**Key Difference:** `extends` is for inheritance, while `implements` ensures a class follows a required structure.
+
+---
+
+# 15. Is it possible to call the constructor of the base class from a child class?
+
+## Answer
+
+**Yes.** In TypeScript, a child class can call the constructor of its parent class using the **`super()`** method.
+
+If the parent constructor accepts parameters, those parameters must be passed to `super()`.
+
+```ts
+class Person {
+  constructor(public name: string) {}
+}
+
+class Student extends Person {
+  constructor(name: string, public grade: string) {
+    super(name); // Calls the parent constructor
+  }
+}
+
+const student = new Student("John", "A");
+
+console.log(student.name);  // John
+console.log(student.grade); // A
+```
+
+### Important Points
+
+* `super()` must be called **before using `this`** inside the child class constructor.
+* If the parent class has a constructor, the child class **must call `super()`**.
+
+**Key Difference:** `super()` initializes the parent class, allowing the child class to inherit and use its properties and methods correctly.
+---
+
 ```
 
 Happy Coding 🚀
