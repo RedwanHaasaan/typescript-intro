@@ -1,3 +1,11 @@
+## 📌 Task
+
+**Make a Simple TODO App using HTML, Tailwind CSS, and Vanilla TypeScript**
+
+* **[Git Repository Link](https://github.com/RedwanHaasaan/TypoDo)**
+* **[Live Link](https://typo-do.vercel.app/)**
+
+---
 # TypeScript Interview Notes
 
 ## 1. Why Use TypeScript Over JavaScript?
@@ -268,8 +276,6 @@ type Status = "active" | "inactive" | "pending";
 
 **📅 Date:** 24/06/2026
 
----
-
 # 11. When do you use a return type of `never` and how does it differ from `void`?
 
 ## Answer
@@ -430,8 +436,7 @@ console.log(student.grade); // A
 * `super()` must be called **before using `this`** inside the child class constructor.
 * If the parent class has a constructor, the child class **must call `super()`**.
 
-**Key Difference:** `super()` initializes the parent class, allowing the child class to inherit and use its properties and methods correctly.
----
+**Key Point:** `super()` initializes the parent class, allowing the child class to inherit and use its properties and methods correctly.
 
 ```
 
